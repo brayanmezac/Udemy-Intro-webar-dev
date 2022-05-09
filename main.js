@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const { renderer, scene, camera } = mindarThree;
 
     // create AR object
-    const geometry1 = new THREE.PlaneGeometry(1.5, 1.5);
+    const geometry1 = new THREE.PlaneGeometry(1, 1);
     const material1 = new THREE.MeshBasicMaterial({
       color: 0x00ffff,
       transparent: true,
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const plane1 = new THREE.Mesh(geometry1, material1);
 
-    const geometry2 = new THREE.PlaneGeometry(1.5, 1.5);
+    const geometry2 = new THREE.PlaneGeometry(1, 1);
     const material2 = new THREE.MeshBasicMaterial({
       color: 0xebf1f5,
       transparent: false,
