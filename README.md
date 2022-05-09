@@ -1,5 +1,5 @@
 === Summary
-
+Udemy-Intro-webar-dev
 1. ./lectures-start directory contains source code at the beginning of the lectures
 2. ./lectures directory contains source at the end of the lectures
 3. ./assets directory contains all resources used in the examples
