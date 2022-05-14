@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       confirmButtons.style.display = "block";
       //start animations
 
-      const clock = new THREE.Clock();
+      // const clock = new THREE.Clock();
 
       // // await mindarThree.start();
       // renderer.setAnimationLoop(() => {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       itemButtons.style.display = "block";
       confirmButtons.style.display = "none";
       if (selectedItem) {
-	selectedItem.visible = false;
+	    selectedItem.visible = false;
       }
       selectedItem = null;
     }
@@ -192,6 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
           const hitTestResults = frame.getHitTestResults(hitTestSource);
           if (hitTestResults.length) {
             const hit = hitTestResults[0];
+            // start animations
+              // if(selectedItem.animations){
+              // const mixer = new THREE.AnimationMixer(selectedItem.scene);
+              // const action = mixer.clipAction(selectedItem.animations[0]);
+              // action.play();}
+              // // await mindarThree.start();
+              // renderer.setAnimationLoop(() => {
+              //   const delta = clock.getDelta();
+              //   mixer.update(delta);
+              //   renderer.render(scene, camera);
+              // });
+
             selectedItem.visible = true;
             selectedItem.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
           } else {
