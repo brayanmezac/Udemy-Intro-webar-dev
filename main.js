@@ -1,6 +1,6 @@
-import {loadGLTF} from "./libs/loader.js";
-import * as THREE from './libs/three.js-r132/build/three.module.js';
-import {ARButton} from './libs/three.js-r132/examples/jsm/webxr/ARButton.js';
+import {loadGLTF} from "../../libs/loader.js";
+import * as THREE from '../../libs/three.js-r132/build/three.module.js';
+import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 // import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
 
 const normalizeModel = (obj, height) => {
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    // const itemNames = ['IW', 'chair', 'cushion'];
-    const itemNames = [ 'chair', 'cushion'];
-    const itemHeights = [0.5, 0.7, 0.05];
+    const itemNames = ['IW', 'chair', 'cushion'];
+    // const itemNames = [ 'chair', 'cushion'];
+    const itemHeights = [4.5, 0.7, 0.05];
     const items = [];
     for (let i = 0; i < itemNames.length; i++) {
-      const model = await loadGLTF('./assets/models/' + itemNames[i] + '/scene.gltf');
+      const model = await loadGLTF('../../assets/models/' + itemNames[i] + '/scene.gltf');
       normalizeModel(model.scene, itemHeights[i]);
       const item = new THREE.Group();
       item.add(model.scene);
