@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    const itemNames = ['IW', 'chair', 'cushion'];
+    const itemNames = ['IW', 'IW-static'];
     // const itemNames = [ 'chair', 'cushion'];
-    const itemHeights = [4.5, 0.7, 0.05];
+    const itemHeights = [4.5, 4.5];
     const items = [];
     for (let i = 0; i < itemNames.length; i++) {
       const model = await loadGLTF('../../assets/models/' + itemNames[i] + '/scene.gltf');
@@ -80,11 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const select = (selectItem) => {
       items.forEach((item) => {
-	item.visible = item === selectItem;
+        //start animations
+        // if(item.animations){
+        // const mixer = new THREE.AnimationMixer(item.scene);
+        // const action = mixer.clipAction(item.animations[0]);
+        // action.play();}
+      item.visible = item === selectItem;
       });
       selectedItem = selectItem;
       itemButtons.style.display = "none";
       confirmButtons.style.display = "block";
+      //start animations
+
+      const clock = new THREE.Clock();
+
+      // // await mindarThree.start();
+      // renderer.setAnimationLoop(() => {
+      //   const delta = clock.getDelta();
+      //   mixer.update(delta);
+      //   renderer.render(scene, camera);
+      // });
     }
     const cancelSelect = () => {
       itemButtons.style.display = "block";
@@ -120,12 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < items.length; i++) {
       const el = document.querySelector("#item" + i);
       el.addEventListener('beforexrselect', (e) => {
-	e.preventDefault();
+	    e.preventDefault();
       });
       el.addEventListener('click', (e) => {
-	e.preventDefault();
-	e.stopPropagation();
-	select(items[i]);
+      e.preventDefault();
+      e.stopPropagation();
+      select(items[i]);
       });
     }
 
@@ -145,33 +160,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
 
       renderer.setAnimationLoop((timestamp, frame) => {
-	if (!frame) return;
+	      if (!frame) return;
 
-	const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
-	if (touchDown && selectedItem) {
-	  const viewerMatrix = new THREE.Matrix4().fromArray(frame.getViewerPose(referenceSpace).transform.inverse.matrix);
-	  const newPosition = controller.position.clone();
-	  newPosition.applyMatrix4(viewerMatrix); // change to viewer coordinate
-	  if (prevTouchPosition) {
-	    const deltaX = newPosition.x - prevTouchPosition.x;
-	    const deltaZ = newPosition.y - prevTouchPosition.y;
-	    selectedItem.rotation.y += deltaX * 30;
-	  }
-	  prevTouchPosition = newPosition;
-	}
+        const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
+        if (touchDown && selectedItem) {
+          const viewerMatrix = new THREE.Matrix4().fromArray(frame.getViewerPose(referenceSpace).transform.inverse.matrix);
+          const newPosition = controller.position.clone();
+          newPosition.applyMatrix4(viewerMatrix); // change to viewer coordinate
+          if (prevTouchPosition) {
+            const deltaX = newPosition.x - prevTouchPosition.x;
+            const deltaZ = newPosition.y - prevTouchPosition.y;
+            selectedItem.rotation.y += deltaX * 30;
+          }
+          prevTouchPosition = newPosition;
+        }
 
-	if (selectedItem) {
-	  const hitTestResults = frame.getHitTestResults(hitTestSource);
-	  if (hitTestResults.length) {
-	    const hit = hitTestResults[0];
-	    selectedItem.visible = true;
-	    selectedItem.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
-	  } else {
-	    selectedItem.visible = false;
-	  }
-	}
+        if (selectedItem) {
+          const hitTestResults = frame.getHitTestResults(hitTestSource);
+          if (hitTestResults.length) {
+            const hit = hitTestResults[0];
+            selectedItem.visible = true;
+            selectedItem.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
+          } else {
+            selectedItem.visible = false;
+          }
+        }
 
-	renderer.render(scene, camera);
+      renderer.render(scene, camera);
       });
     });
   }
