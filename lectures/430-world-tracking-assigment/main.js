@@ -1,6 +1,7 @@
 import {loadGLTF} from "../../libs/loader.js";
 import * as THREE from '../../libs/three.js-r132/build/three.module.js';
 import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
+import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
 
 const normalizeModel = (obj, height) => {
   // scale it according to height
@@ -53,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    const itemNames = ['coffee-table', 'chair', 'cushion'];
+    // const itemNames = ['IW', 'chair', 'cushion'];
+    const itemNames = [ 'chair', 'cushion'];
     const itemHeights = [0.5, 0.7, 0.05];
     const items = [];
     for (let i = 0; i < itemNames.length; i++) {
