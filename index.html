@@ -1,12 +1,40 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../libs/mindar/mindar-image-three.prod.js"></script>
-    <script src="./main.js" type="module"></script>
-    <style>
-      html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
-    </style>
-  </head>
-  <body>
-  </body>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./main"></script>
+  <style>
+    body{
+      margin: 0;
+    }
+    #item-buttons,#confirm-buttons {
+      position: absolute;
+      top: 50px;
+      z-index: 2;
+      display: flex;
+      flex-direction: row;
+      display: none;
+    }
+    .button-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin: 5px;
+    }
+    .button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="item-buttons">
+    <img class="button-image" id="item0" src="../../assets/models/IW/thumbnail.png"/>
+    <img class="button-image" id="item1" src="../../assets/models/chair/thumbnail.png"/>
+    <img class="button-image" id="item2" src="../../assets/models/cushion/thumbnail.png"/>
+  </div>
+  <div id="confirm-buttons">
+    <button class="button" id="place">OK</button>
+    <button class="button" id="cancel">X</button>
+  </div>
+</body>
 </html>

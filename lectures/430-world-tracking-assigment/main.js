@@ -1,7 +1,7 @@
 import {loadGLTF} from "../../libs/loader.js";
 import * as THREE from '../../libs/three.js-r132/build/three.module.js';
 import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
-import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
+// import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
 
 const normalizeModel = (obj, height) => {
   // scale it according to height
