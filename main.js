@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    const itemNames = ['IW', 'IW-static'];
+    const itemNames = ['IW', 'IW-Static'];
     // const itemNames = [ 'chair', 'cushion'];
     const itemHeights = [4.5, 4.5];
     const items = [];
