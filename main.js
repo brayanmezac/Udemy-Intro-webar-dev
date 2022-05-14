@@ -1,6 +1,6 @@
-import {loadGLTF} from "../../libs/loader.js";
-import * as THREE from '../../libs/three.js-r132/build/three.module.js';
-import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
+import {loadGLTF} from "./libs/loader.js";
+import * as THREE from './libs/three.js-r132/build/three.module.js';
+import {ARButton} from './libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 // import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
 
 const normalizeModel = (obj, height) => {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemHeights = [4.5, 4.5];
     const items = [];
     for (let i = 0; i < itemNames.length; i++) {
-      const model = await loadGLTF('../../assets/models/' + itemNames[i] + '/scene.gltf');
+      const model = await loadGLTF('./assets/models/' + itemNames[i] + '/scene.gltf');
       normalizeModel(model.scene, itemHeights[i]);
       const item = new THREE.Group();
       item.add(model.scene);
@@ -121,6 +121,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const spawnItem = deepClone(selectedItem);
       setOpacity(spawnItem, 1.0);
       scene.add(spawnItem);
+
+      // // start animations
+      //   if(spawnItem.animations){
+      //   const mixer = new THREE.AnimationMixer(spawnItem.scene);
+      //   const action = mixer.clipAction(spawnItem.animations[0]);
+      //   action.play();}
+      //   // await mindarThree.start();
+      //   renderer.setAnimationLoop(() => {
+      //     const delta = clock.getDelta();
+      //     mixer.update(delta);
+      //     renderer.render(scene, camera);
+      //   });
+
       cancelSelect();
     });
     cancelButton.addEventListener('beforexrselect', (e) => {
