@@ -122,17 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
       setOpacity(spawnItem, 1.0);
       scene.add(spawnItem);
 
-      // // start animations
-      //   if(spawnItem.animations){
-      //   const mixer = new THREE.AnimationMixer(spawnItem.scene);
-      //   const action = mixer.clipAction(spawnItem.animations[0]);
-      //   action.play();}
-      //   // await mindarThree.start();
-      //   renderer.setAnimationLoop(() => {
-      //     const delta = clock.getDelta();
-      //     mixer.update(delta);
-      //     renderer.render(scene, camera);
-      //   });
+      // start animations
+        // if(spawnItem.animations){
+          console.log(spawnItem)
+        // const mixer = new THREE.AnimationMixer(spawnItem.scene);
+        // const action = mixer.clipAction(spawnItem.animations[0]);
+        // action.play();
+      // }
+        // await mindarThree.start();
+        // renderer.setAnimationLoop(() => {
+        //   const delta = clock.getDelta();
+        //   mixer.update(delta);
+        //   renderer.render(scene, camera);
+        // });
 
       cancelSelect();
     });
