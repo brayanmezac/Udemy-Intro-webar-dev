@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // start animations
         // if(spawnItem.animations){
-          console.log(spawnItem)
+          // console.log(spawnItem)
         // const mixer = new THREE.AnimationMixer(spawnItem.scene);
         // const action = mixer.clipAction(spawnItem.animations[0]);
         // action.play();
