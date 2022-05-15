@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //   mixer.update(delta);
         //   renderer.render(scene, camera);
         // });
-
+        
       cancelSelect();
     });
     cancelButton.addEventListener('beforexrselect', (e) => {
